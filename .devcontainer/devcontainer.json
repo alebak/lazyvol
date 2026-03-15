@@ -1,0 +1,28 @@
+{
+  "name": "lazyvol",
+  "dockerFile": "Dockerfile",
+  "remoteUser": "vscode",
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "upgradePackages": false
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-home,target=/home/vscode,type=volume"
+  ],
+
+  "remoteEnv": {
+    "PATH": "/home/vscode/go/bin:${containerEnv:PATH}"
+  },
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "shutdownAction": "stopContainer"
+}
