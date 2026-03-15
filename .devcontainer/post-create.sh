@@ -11,7 +11,9 @@ echo '{"credsStore":""}' > "${HOME}/.docker/config.json"
 git config pull.rebase true
 
 # ── Go tools ────────────────────────────────────────────────────────────────
-echo "▶ Installing Go tools..."
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-
-echo "✓ Dev environment ready"
+if ! command -v golangci-lint &>/dev/null; then
+  echo "▶ Installing golangci-lint..."
+  go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+else
+  echo "✓ golangci-lint already installed: $(golangci-lint --version)"
+fi
