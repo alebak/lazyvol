@@ -15,6 +15,27 @@
     "ghcr.io/devcontainers/features/git:1": {}
   },
 
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go"
+      ],
+      "settings": {
+        "go.useLanguageServer": true,
+        "go.lintTool": "golangci-lint",
+        "go.lintOnSave": "package",
+        "go.formatTool": "gofmt",
+        "go.formatOnSave": true,
+        "[go]": {
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        }
+      }
+    }
+  },
+
   "mounts": [
     "source=${localWorkspaceFolderBasename}-home,target=/home/vscode,type=volume"
   ],
